@@ -436,8 +436,15 @@ string = betOptions.join(' vs ');
 			return;
 		}
 
+		reset();
+
 		payouts = contents[2].split(',');
 		choices = contents[3].split(',');
+
+		if (payouts.length != choices.length) {
+			$.say($.whisperPrefix(sender) + $.lang.get('pdbetting.err.preset.corrupt'));
+			return;
+		}
 
 		// Outtake from openBet()
 		for(i in payouts) {
@@ -641,7 +648,7 @@ string = betOptions.join(' vs ');
 			points = 0;
 		}
 
-		$.say((sender != '') ? $.whisperPrefix(sender) : '' + $.lang.get('pdbetting.notification.bet.info.options', result.slice(0, -2)));
+		$.say(((sender != '') ? $.whisperPrefix(sender) : '') + $.lang.get('pdbetting.notification.bet.info.options', result.slice(0, -2)));
 	};
 
 	/**
@@ -671,7 +678,7 @@ string = betOptions.join(' vs ');
 	function expandPointSuffix(pointsString) {
 		// m (million), b (billion), t (trillion), Q (Quadrillion)
 		var map = [],
-			suffix = str.slice(-1),
+			suffix = pointsString.slice(-1),
 			temp = -1,
 			result = -1;
 
@@ -680,8 +687,8 @@ string = betOptions.join(' vs ');
 		map['t'] = 1000000000000;
 		map['Q'] = 1000000000000000;
 
-   		if (!isNaN(str.slice(0, -1))) {
-      		temp = parseFloat(str.slice(0, -1));
+   		if (!isNaN(pointsString.slice(0, -1))) {
+      		temp = parseFloat(pointsString.slice(0, -1));
 
       		if (map[suffix] != undefined) {
          		result = temp * map[suffix];
