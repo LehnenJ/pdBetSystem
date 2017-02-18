@@ -1,0 +1,6 @@
+grades;10;10m;2x,2x,2x,2x,4x;dropout,standard,great,excellent,perfect
+pass;10;10m;2x,2x;pass,fail
+perfect;10;10m;4x,2x;perfect,passed
+points;10;10m;2x,2x,6x;even,odd,special
+test;1;10;2x,2x;opt1,opt2
+transforms;10;10m;2x,2x,2x,2x,2x,2x;miku,luka,rin,len,kaito,meiko
